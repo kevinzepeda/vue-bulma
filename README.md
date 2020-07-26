@@ -1,6 +1,6 @@
-# platzi-music
+# Vue and Bulma Experiment
 
-> A Vue.js project
+![](https://i.imgur.com/Qt9hHiR.png)
 
 ## Build Setup
 
