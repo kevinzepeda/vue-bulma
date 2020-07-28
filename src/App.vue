@@ -22,6 +22,13 @@
         p(v-text="value")
         p(v-html="html")
         Tarjetas.mb-6
+        // Data binding
+        // Cambiar datos usando la reactividad
+        // v-bind ayuda a enlazar un atributo con una propiedad
+        // v-bind puede ser solo : como shortcut
+        input(v-model="person.name")
+        h1 Hello my name is {{ person.name }}
+        a(v-bind:href="url") floups.com
 </template>
 
 <script>
@@ -44,10 +51,16 @@ export default {
         name: 'Kevin',
         edad: '24'
       },
+      url: 'https://floups.com',
       showValue: true,
       value: 'El valor',
       html: '<ul><li>Hola</li></ul>',
       items: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    }
+  },
+  computed: {
+    fullName () {
+      return `${this.person.name} tiene ${this.person.edad} de edad`
     }
   }
 }
