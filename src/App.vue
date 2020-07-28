@@ -29,6 +29,13 @@
         input(v-model="person.name")
         h1 Hello my name is {{ person.name }}
         a(v-bind:href="url") floups.com
+        br
+        //Computed properties y Watchers
+        input(v-model="person.lastName")
+        h1 {{fullName}} y tengo {{ age }} años de edad
+        br
+        p Fecha de nacimiento
+        input(v-model="person.fechaNaciemiento" type="date")
 </template>
 
 <script>
@@ -49,7 +56,9 @@ export default {
       title: 'Hola Mundo',
       person: {
         name: 'Kevin',
-        edad: '24'
+        lastName: 'Zepeda',
+        edad: '24',
+        fechaNaciemiento: '1996-03-23'
       },
       url: 'https://floups.com',
       showValue: true,
@@ -60,7 +69,13 @@ export default {
   },
   computed: {
     fullName () {
-      return `${this.person.name} tiene ${this.person.edad} de edad`
+      return `Mi nombre es ${this.person.name} ${this.person.lastName}`
+    },
+    age () {
+      const fecha = new Date()
+      const year = fecha.getFullYear()
+      const nacimiento = this.person.fechaNaciemiento.substr(0, 4)
+      return year - nacimiento
     }
   }
 }
