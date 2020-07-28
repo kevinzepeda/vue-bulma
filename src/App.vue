@@ -30,12 +30,24 @@
         h1 Hello my name is {{ person.name }}
         a(v-bind:href="url") floups.com
         br
-        //Computed properties y Watchers
+        //Computed properties
         input(v-model="person.lastName")
         h1 {{fullName}} y tengo {{ age }} años de edad
         br
         p Fecha de nacimiento
         input(v-model="person.fechaNaciemiento" type="date")
+        // Watchers
+        // Ejecuta código a partir que una propiedad cambia
+        // Van en el objeto watch
+        br
+        p {{ value }}
+        input(v-model="value")
+        // Eventos
+        // Es un objeto (methods) que nos ayuda a
+        // tener funciones para nuestra app
+        br
+        button(v-on:click="format") Format
+        p {{ formatedName }}
 </template>
 
 <script>
@@ -64,7 +76,8 @@ export default {
       showValue: true,
       value: 'El valor',
       html: '<ul><li>Hola</li></ul>',
-      items: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      items: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      formatedName: ''
     }
   },
   computed: {
@@ -76,6 +89,16 @@ export default {
       const year = fecha.getFullYear()
       const nacimiento = this.person.fechaNaciemiento.substr(0, 4)
       return year - nacimiento
+    }
+  },
+  watch: {
+    value (newVal, oldVal) {
+      console.log(newVal, oldVal)
+    }
+  },
+  methods: {
+    format () {
+      this.formatedName = this.value.split(' ').join('-')
     }
   }
 }
